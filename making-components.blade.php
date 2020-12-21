@@ -55,3 +55,17 @@ class ShowPosts extends Component
 }
 @endverbatim
 @endcomponent
+
+## Trigger a component refresh
+If you'd like to trigger a component refresh you need to register an event that triggers the refresh with the `$refresh` magic method:
+
+@component('components.code', ['lang' => 'php'])
+@verbatim
+class ShowPosts extends Component
+{
+    protected $listeners = ['refreshShowPostsComponent' => '$refresh'];
+}
+@endverbatim
+@endcomponent
+
+This can be particualarly usefull when your component's state consists of some cached properties and the cache is invalidated or updated by user interaction. You can raise this event from anywhere. Read more about events [here](/docs/2.x/events).
